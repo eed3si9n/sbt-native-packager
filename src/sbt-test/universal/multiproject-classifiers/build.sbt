@@ -38,9 +38,9 @@ lazy val sub = project
     },
     Assets / exportedProducts := {
       implicit val converter: FileConverter = fileConverter.value
-      Seq(
-        Attributed
-          .blank(PluginCompat.toFileRef(baseDirectory.value / "src" / "main" / "assets"))
+      val assetsDir = baseDirectory.value / "src" / "main" / "assets"
+      assetsDir.**(AllPassFilter).filter(_.isFile).classpath.map(
+        _
           .put(PluginCompat.artifactStr, PluginCompat.artifactToStr((Assets / artifact).value))
           .put(PluginCompat.moduleIDStr, PluginCompat.moduleIDToStr(projectID.value))
       )
