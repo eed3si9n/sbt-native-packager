@@ -1,3 +1,6 @@
+# Workaround: set target folder to what it was in sbt 1.x because with sbt 2.x and project matrix target is target/out/jvm/scala-3.3.3/
+> set target := baseDirectory.value / "target"
+
 # These tasks can be aggregated, but running them one by one means
 # more granular output in case of a failure.
 > issue1243/runChecks
@@ -6,4 +9,6 @@
 > issue1247JakartaJavaModules/runChecks
 > issue1266/runChecks
 -> issue1284/runFailingChecks
+> show issue1293/jlinkBuildImage/fullClasspath
+> show issue1293/jlinkModulePath
 > issue1293/runChecks
