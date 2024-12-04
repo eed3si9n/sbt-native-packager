@@ -5,7 +5,7 @@ import java.util.jar.Attributes
 import sbt.*
 import xsbti.FileConverter
 
-private[packager] object PluginCompat {
+object PluginCompat {
   type FileRef = java.io.File
   type ArtifactPath = java.io.File
   type Out = java.io.File
@@ -33,6 +33,8 @@ private[packager] object PluginCompat {
     cp.map(_.data.toPath()).toVector
   def toFiles(cp: Seq[Attributed[File]])(implicit conv: FileConverter): Vector[File] =
     cp.map(_.data).toVector
+  def toFileRefsMapping(mappings: Seq[(File, String)])(implicit conv: FileConverter): Seq[(FileRef, String)] =
+    mappings
   def toFileRef(x: File)(implicit conv: FileConverter): FileRef =
     x
   def getName(ref: File): String =

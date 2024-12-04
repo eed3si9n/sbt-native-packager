@@ -7,7 +7,7 @@ import sbt.*
 import xsbti.{FileConverter, HashedVirtualFileRef, VirtualFile, VirtualFileRef}
 import sbt.internal.RemoteCache
 
-private[packager] object PluginCompat:
+object PluginCompat:
   type FileRef = HashedVirtualFileRef
   type ArtifactPath = VirtualFileRef
   type Out = VirtualFile
@@ -45,6 +45,8 @@ private[packager] object PluginCompat:
     cp.map(toNioPath).toVector
   inline def toFiles(cp: Seq[Attributed[HashedVirtualFileRef]])(using conv: FileConverter): Vector[File] =
     toNioPaths(cp).map(_.toFile())
+  def toFileRefsMapping(mappings: Seq[(File, String)])(using conv: FileConverter): Seq[(FileRef, String)] =
+    mappings.map { case (f, name) => toFileRef(f) -> name }
   def toFileRef(x: File)(using conv: FileConverter): FileRef =
     conv.toVirtualFile(x.toPath())
   def getName(ref: FileRef): String =

@@ -1,4 +1,6 @@
 import com.typesafe.sbt.packager.Compat._
+import com.typesafe.sbt.packager.PluginCompat
+import xsbti.FileConverter
 
 ThisBuild / scalaVersion := "2.12.20"
 
@@ -11,7 +13,7 @@ lazy val mySettings: Seq[Setting[_]] =
     TaskKey[Unit]("showFiles") := {
       System.out.synchronized {
         println("Files in [" + name.value + "]")
-        val files = (target.value / "universal/stage").**(AllPassFilter).get
+        val files = (target.value / "universal/stage").**(AllPassFilter).get()
         files foreach println
       }
     }
@@ -27,18 +29,20 @@ lazy val sub = project
     ivyConfigurations += Assets,
     Assets / artifact := artifact.value.withClassifier(classifier = Some("assets")),
     packagedArtifacts += {
+      implicit val converter: FileConverter = fileConverter.value
       val file = target.value / "assets.jar"
       val assetsDir = baseDirectory.value / "src" / "main" / "assets"
       val sources = assetsDir.**(AllPassFilter).filter(_.isFile) pair (file => IO.relativize(assetsDir, file))
       IO.zip(sources, file)
-      (Assets / artifact).value -> file
+      (Assets / artifact).value -> PluginCompat.toFileRef(file)
     },
     Assets / exportedProducts := {
+      implicit val converter: FileConverter = fileConverter.value
       Seq(
         Attributed
-          .blank(baseDirectory.value / "src" / "main" / "assets")
-          .put(artifact.key, (Assets / artifact).value)
-          .put(AttributeKey[ModuleID]("module-id"), projectID.value)
+          .blank(PluginCompat.toFileRef(baseDirectory.value / "src" / "main" / "assets"))
+          .put(PluginCompat.artifactStr, PluginCompat.artifactToStr((Assets / artifact).value))
+          .put(PluginCompat.moduleIDStr, PluginCompat.moduleIDToStr(projectID.value))
       )
     }
   )
