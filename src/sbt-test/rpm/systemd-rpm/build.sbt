@@ -1,6 +1,10 @@
 import com.typesafe.sbt.packager.Compat._
+import com.typesafe.sbt.packager.PluginCompat
+import xsbti.FileConverter
 
 enablePlugins(JavaServerAppPackaging, SystemdPlugin)
+
+scalaVersion := "2.12.20"
 
 name := "rpm-test"
 version := "0.1.0"
@@ -19,7 +23,8 @@ rpmGroup := Some("test-group")
 Rpm / requiredStartFacilities := Some("serviceA.service")
 
 TaskKey[Unit]("unzip") := {
-  val rpmPath = Seq((Rpm / packageBin).value.getAbsolutePath)
+  implicit val converter: FileConverter = fileConverter.value
+  val rpmPath = Seq(PluginCompat.toFile((Rpm / packageBin).value).getAbsolutePath)
   sys.process.Process("rpm2cpio", rpmPath) #| sys.process.Process("cpio -i --make-directories") ! streams.value.log
   ()
 }
