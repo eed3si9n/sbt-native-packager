@@ -1,10 +1,13 @@
+# Workaround: set target folder to what it was in sbt 1.x because with sbt 2.x and project matrix target is target/out/jvm/scala-3.3.3/
+> set target := baseDirectory.value / "target"
+
 # Run the staging and check the script.
 > stage
 $ exists target/universal/stage/bin/main-app
 $ exists target/universal/stage/bin/second-app
 > checkNoExplicitMain
 > clean
-> set mainClass in Compile := Some("com.example.MainApp")
+> set Compile / mainClass := Some("com.example.MainApp")
 > stage
 $ exists target/universal/stage/bin/test-project
 $ exists target/universal/stage/bin/second-app
