@@ -1,5 +1,7 @@
 enablePlugins(JavaServerAppPackaging, SystemdPlugin)
 
+scalaVersion := "2.12.20"
+
 name := "debian-test"
 version := "0.1.0"
 maintainer := "Alexey Kardapoltsev <alexey.kardapoltsev@frumatic.com>"

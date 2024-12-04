@@ -2,6 +2,8 @@ import com.typesafe.sbt.packager.Compat._
 
 enablePlugins(JavaAppPackaging)
 
+scalaVersion := "2.12.20"
+
 name := "debian-test"
 
 version := "0.1.0"
@@ -25,7 +27,7 @@ TaskKey[Unit]("checkScript") := {
     val scriptContents = IO.read(script)
     System.err.println(scriptContents)
     System.err.println("---END SCRIPT---")
-    for (file <- dir.**(AllPassFilter).get)
+    for (file <- dir.**(AllPassFilter).get())
       System.err.println("\t" + file)
   }
   val cmd = "bash " + script.getAbsolutePath + " -d"
