@@ -1,3 +1,6 @@
+# Workaround: set target folder to what it was in sbt 1.x because with sbt 2.x and project matrix target is target/out/jvm/scala-3.3.3/
+> set target := baseDirectory.value / "target"
+
 # Create the distribution and ensure files show up.
 > dist
 $ exists target/universal/simple-test-0.1.0.zip
