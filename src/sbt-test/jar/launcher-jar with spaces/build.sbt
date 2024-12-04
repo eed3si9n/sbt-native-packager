@@ -1,3 +1,5 @@
+scalaVersion := "2.12.20"
+
 enablePlugins(LauncherJarPlugin)
 
 name := "launcher-jar-test"

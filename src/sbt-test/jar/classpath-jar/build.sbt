@@ -2,6 +2,8 @@ import com.typesafe.sbt.packager.Compat._
 
 enablePlugins(ClasspathJarPlugin)
 
+scalaVersion := "2.12.20"
+
 name := "classpath-jar-test"
 
 version := "0.1.0"
