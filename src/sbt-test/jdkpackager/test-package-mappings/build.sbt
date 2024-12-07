@@ -1,3 +1,8 @@
+import com.typesafe.sbt.packager.PluginCompat
+
+import NativePackagerHelper._
+import xsbti.FileConverter
+
 enablePlugins(JDKPackagerPlugin)
 
 scalaVersion := "2.12.20"
@@ -18,11 +23,9 @@ packageDescription := "Test JDKPackagerPlugin with mappings"
 
 jdkPackagerType := "image"
 
-Universal / mappings += baseDirectory.value / "src" / "deploy" / "README.md" -> "README.md"
-
 Universal / mappings ++= {
-  val dir = baseDirectory.value / "src" / "deploy" / "stuff"
-  (dir.**(AllPassFilter) --- dir) pair (file => IO.relativize(dir.getParentFile, file))
+  implicit val converter: FileConverter = fileConverter.value
+  PluginCompat.toFileRefsMapping(directory(baseDirectory.value / "src" / "deploy"))
 }
 
 lazy val iconGlob = sys.props("os.name").toLowerCase match {
@@ -31,7 +34,7 @@ lazy val iconGlob = sys.props("os.name").toLowerCase match {
   case _                        => "*.png"
 }
 
-jdkAppIcon := (baseDirectory.value / ".." / ".." / ".." / ".." / "test-project-jdkpackager" ** iconGlob).getPaths.headOption
+jdkAppIcon := (baseDirectory.value / ".." / ".." / ".." / ".." / "test-project-jdkpackager" ** iconGlob).getPaths().headOption
   .map(file)
 
 TaskKey[Unit]("checkImage") := {
