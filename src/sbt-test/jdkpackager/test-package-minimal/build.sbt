@@ -2,6 +2,8 @@
 
 enablePlugins(JDKPackagerPlugin)
 
+scalaVersion := "2.12.20"
+
 Compile / mainClass := Some("ExampleApp")
 
 jdkPackagerType := "image"
