@@ -1,5 +1,3 @@
-scalaVersion := "2.12.20"
-
 enablePlugins(JavaAppPackaging)
 
 name := "absolute-path-in-bash"

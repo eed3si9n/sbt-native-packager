@@ -1,7 +1,5 @@
 enablePlugins(JDKPackagerPlugin)
 
-scalaVersion := "2.12.20"
-
 name := "JDKPackagerPluginTest"
 
 version := "0.1.0"

@@ -1,7 +1,5 @@
 enablePlugins(JavaAppPackaging, AshScriptPlugin)
 
-scalaVersion := "2.12.20"
-
 name := "command-line-app"
 
 version := "0.1.0-SNAPSHOT"

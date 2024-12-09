@@ -1,7 +1,5 @@
 enablePlugins(JavaServerAppPackaging, UpstartPlugin)
 
-scalaVersion := "2.12.20"
-
 name := "debian-test"
 
 executableScriptName := "debian-exec"

@@ -2,8 +2,6 @@ import com.typesafe.sbt.packager.Compat._
 import com.typesafe.sbt.packager.PluginCompat
 import xsbti.FileConverter
 
-ThisBuild / scalaVersion := "2.12.20"
-
 lazy val appVersion = "1.0"
 
 lazy val mySettings: Seq[Setting[_]] =

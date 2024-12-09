@@ -1,7 +1,5 @@
 import com.typesafe.sbt.packager.Compat._
 
-scalaVersion := "2.12.20"
-
 enablePlugins(JavaAppPackaging)
 
 name := "simple-app"

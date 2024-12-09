@@ -4,8 +4,6 @@ import NativePackagerHelper._
 
 enablePlugins(JavaAppPackaging)
 
-scalaVersion := "2.12.20"
-
 name := "docker-build-command-test"
 
 version := "0.1.0"

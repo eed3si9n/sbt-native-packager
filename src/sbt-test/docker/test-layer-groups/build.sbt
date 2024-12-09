@@ -3,8 +3,6 @@ import xsbti.FileConverter
 
 enablePlugins(JavaAppPackaging)
 
-scalaVersion := "2.12.20"
-
 organization := "com.example"
 name := "docker-groups"
 version := "0.1.0"

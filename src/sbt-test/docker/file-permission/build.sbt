@@ -10,7 +10,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "file-permission-test",
     version := "0.1.0",
-    scalaVersion := "2.12.20",
     checkDockerfileDefaults := {
       val dockerfile = IO.read((Docker / stagingDirectory).value / "Dockerfile")
       val lines = dockerfile.linesIterator.toList

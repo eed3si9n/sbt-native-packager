@@ -1,7 +1,5 @@
 import scala.io.Source
 
-scalaVersion := "2.12.20"
-
 enablePlugins(JavaAppPackaging)
 
 name := "override-templates"

@@ -2,8 +2,6 @@ import com.typesafe.sbt.packager.Compat._
 import com.typesafe.sbt.packager.PluginCompat
 import xsbti.FileConverter
 
-scalaVersion := "2.12.20"
-
 enablePlugins(JavaAppPackaging)
 
 name := "simple-test"

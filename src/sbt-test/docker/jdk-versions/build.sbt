@@ -1,6 +1,5 @@
 val basename = "jdk-versions"
 
-ThisBuild / scalaVersion := "2.12.20"
 ThisBuild / Compile / compile / scalacOptions := Seq("-target:jvm-1.8")
 
 lazy val `jdk8` = project

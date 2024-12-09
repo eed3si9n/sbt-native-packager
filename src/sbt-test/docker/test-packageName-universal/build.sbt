@@ -1,7 +1,5 @@
 enablePlugins(JavaAppPackaging)
 
-scalaVersion := "2.12.20"
-
 name := "docker-test"
 
 packageName := "docker-package"
