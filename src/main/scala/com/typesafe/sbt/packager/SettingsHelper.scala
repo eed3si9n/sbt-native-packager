@@ -21,14 +21,7 @@ object SettingsHelper {
   ): Seq[Setting[_]] =
     inConfig(config)(
       addArtifact(
-        name apply (Artifact(
-          _,
-          extension,
-          extension,
-          classifier = classifier,
-          configurations = Vector.empty,
-          url = None
-        )),
+        name.apply(Artifact(_, extension, extension, classifier = classifier, configurations = Vector.empty, None)),
         packageTask
       )
     )

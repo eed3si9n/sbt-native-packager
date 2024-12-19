@@ -86,7 +86,9 @@ object WixHelper {
     val filenamesPrep =
       for {
         f <- features
-        ComponentFile(name, _) <- f.components
+       name <- f.components.collect{
+          case ComponentFile(name, _) => name
+        }
       } yield allParentDirs(file(name))
     val filenames = filenamesPrep.flatten.map(_.toString.replaceAll("\\\\", "/")).filter(_ != "")
     // Now for directories...
