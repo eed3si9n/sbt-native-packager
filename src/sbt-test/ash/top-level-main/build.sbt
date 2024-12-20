@@ -6,6 +6,8 @@ name := "top-level-main"
 
 version := "0.1.0"
 
+scalaVersion := "3.3.4"
+
 TaskKey[Unit]("runCheck") := {
   val cwd = (Universal / stagingDirectory).value
   val cmd = Seq((cwd / "bin" / packageName.value).getAbsolutePath)
