@@ -4,6 +4,7 @@ package linux
 
 import sbt.{*, given}
 import LinuxPlugin.Users
+import com.typesafe.sbt.packager.linux.{Mapper => M}
 
 case class LinuxFileMetaData(
   user: String = Users.Root,
@@ -31,7 +32,7 @@ case class LinuxPackageMapping(
   def withPerms(perms: String) = copy(fileData = fileData withPerms perms)
   def withConfig(c: String = "true") = copy(fileData = fileData withConfig c)
   def withContents() =
-    copy(mappings = Mapper.mapDirectoryAndContents(mappings.toSeq: _*))
+    copy(mappings = M.mapDirectoryAndContents(mappings.toSeq *))
   def asDocs() = copy(fileData = fileData.asDocs())
 
   /** Modifies the current package mapping to have gzipped data. */

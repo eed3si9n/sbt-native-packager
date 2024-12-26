@@ -6,19 +6,19 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 // crossBuildingSettings
 lazy val scala212 = "2.12.20"
-lazy val scala3 = "3.3.4"
+lazy val scala3 = "3.6.2"
 Global / scalaVersion := scala3
 crossScalaVersions := Seq(scala3, scala212)
 (pluginCrossBuild / sbtVersion) := {
   scalaBinaryVersion.value match {
     case "2.12" => "1.5.8"
-    case _      => "2.0.0-M2"
+    case _      => "2.0.0-M3"
   }
 }
 scriptedSbt := {
   scalaBinaryVersion.value match {
-    case "2.12" => "1.10.5"
-    case _      => "2.0.0-M2"
+    case "2.12" => "1.10.7"
+    case _      => "2.0.0-M3"
   }
 }
 

@@ -20,17 +20,7 @@ object SettingsHelper {
     classifier: Option[String] = None
   ): Seq[Setting[_]] =
     inConfig(config)(
-      addArtifact(
-        name apply (Artifact(
-          _,
-          extension,
-          extension,
-          classifier = classifier,
-          configurations = Vector.empty,
-          url = None
-        )),
-        packageTask
-      )
+      addArtifact(name apply (Artifact(_, extension, extension, classifier, Vector.empty, None)), packageTask)
     )
 
   def makeDeploymentSettings(
