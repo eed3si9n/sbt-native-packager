@@ -17,7 +17,7 @@ crossScalaVersions := Seq(scala3, scala212)
 }
 scriptedSbt := {
   scalaBinaryVersion.value match {
-    case "2.12" => "1.10.5"
+    case "2.12" => "1.10.7"
     case _      => "2.0.0-M3"
   }
 }
